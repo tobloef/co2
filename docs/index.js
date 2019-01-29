@@ -98,7 +98,7 @@ let chart = new Chart(ctx, {
     }
 });
 
-const socket = io();
+const socket = io("http://199.247.24.20:3000");
 socket.on("data", newData => {
     if (chart == null) {
         return;
