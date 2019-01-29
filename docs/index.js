@@ -111,6 +111,7 @@ socket.on("data", newData => {
 });
 
 function pushData(newData) {
+    console.log("Got CO2", newData.y);
     document.getElementById("co2-count").textContent = newData.y;
     chart.config.data.datasets[0].data.push(newData);
     updateDuration();
