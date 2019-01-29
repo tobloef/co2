@@ -1,7 +1,7 @@
 const Co2Monitor = require("./co2-monitor");
 const socket = require("socket.io-client");
 
-const URL = "https://tobloef.com/co2";
+const URL = "199.247.24.20:3000";
 const PASSWORD = "DEFAULT_PASSWORD";
 
 function setupCO2Monitor() {

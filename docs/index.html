@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CO2 Monitor</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/epoch/0.8.4/css/epoch.min.css">
+</head>
+<body>
+	<h1 style="font-family: sans-serif" align="center">
+		Current CO<sub>2</sub>: <span id="co2-count"></span>
+	</h1>
+	<canvas id="chart"></canvas>
+	<div>
+		<label for="duration">Duration to show:</label>
+		<select id="duration">
+			<option value="60000">1 minute</option>
+			<option value="600000" selected="selected">10 minutes</option>
+			<option value="3600000">1 hour</option>
+			<option value="3600000">4 hours</option>
+			<option value="10800000">12 hours</option>
+			<option value="21600000">1 day</option>
+			<option value="all">All</option>
+		</select>
+	</div>
+
+	<script src="vendor/moment.min.js"></script>
+	<script src="vendor/Chart.min.js"></script>
+	<script src="vendor/chartjs-plugin-annotation.min.js"></script>
+	<script src="vendor/chartjs-plugin-streaming.min.js"></script>
+	<script src="vendor/socket.io.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>
