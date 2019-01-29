@@ -98,7 +98,7 @@ let chart = new Chart(ctx, {
     }
 });
 
-const socket = io("https://server.tobloef.com/co2", { path: '/co2/socket.io'});
+const socket = io("https://server.tobloef.com/co2", { path: "/co2/socket.io" });
 socket.on("data", newData => {
     if (chart == null) {
         return;
