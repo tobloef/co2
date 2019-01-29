@@ -16,7 +16,16 @@ let chart = new Chart(ctx, {
                 lineTension: 0,
                 pointRadius: 0,
                 data: []
-            }
+            },
+            {
+                label: "Temperature °C",
+                yAxisID: "temp",
+                borderColor: "orange",
+                fill: true,
+                lineTension: 0,
+                pointRadius: 0,
+                data: []
+            },
         ]
     },
     options: {
@@ -61,10 +70,27 @@ let chart = new Chart(ctx, {
                     gridLines: {
                         display: true
                     }
+                },
+                {
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Temperature °C"
+                    },
+                    ticks: {
+                        min: -10,
+                        max: 40,
+                    },
+                    position: "right",
+                    id: "temp",
+                    gridLines: {
+                        display: false
+                    }
                 }
             ]
         },
         annotation: {
+            events: ['mouseover', 'mouseout'],
             annotations: [
                 {
                     drawTime: "afterDatasetsDraw",
@@ -73,7 +99,13 @@ let chart = new Chart(ctx, {
                     scaleID: "co2",
                     value: 350,
                     borderColor: "green",
-                    borderWidth: 1
+                    borderWidth: 1,
+                    label: {
+                        enabled: false,
+                        content: "Atmospheric average PPM"
+                    },
+                    onMouseOver: handleLabelMouseOver,
+                    onMouseOver: handleLabelMouseOut,
                 },
                 {
                     drawTime: "afterDatasetsDraw",
@@ -82,7 +114,13 @@ let chart = new Chart(ctx, {
                     scaleID: "co2",
                     value: 800,
                     borderColor: "orange",
-                    borderWidth: 1
+                    borderWidth: 1,
+                    label: {
+                        enabled: false,
+                        content: "Max recommended PPM"
+                    },
+                    onMouseOver: handleLabelMouseOver,
+                    onMouseOver: handleLabelMouseOut,
                 },
                 {
                     drawTime: "afterDatasetsDraw",
@@ -91,7 +129,13 @@ let chart = new Chart(ctx, {
                     scaleID: "co2",
                     value: 1200,
                     borderColor: "red",
-                    borderWidth: 1
+                    borderWidth: 1,
+                    label: {
+                        enabled: false,
+                        content: "High PPM!"
+                    },
+                    onMouseOver: handleLabelMouseOver,
+                    onMouseOver: handleLabelMouseOut,
                 },
             ]
         }
@@ -128,4 +172,16 @@ function updateDuration() {
         duration = parseInt(value);
     }
     chart.config.options.scales.xAxes[0].realtime.duration = duration;
+}
+
+function handleLabelMouseOver(e) {
+    this.options.enabled = true;
+    this.options.chartInstance.update();
+    this.chartInstance.chart.canvas.style.cursor = "pointer";
+}
+
+function handleLabelMouseOut(e) {
+    this.options.enabled = false;
+    this.options.chartInstance.update();
+    this.chartInstance.chart.canvas.style.cursor = "initial";
 }
