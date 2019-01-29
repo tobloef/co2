@@ -1,7 +1,6 @@
 const Co2Monitor = require("./co2-monitor");
-const socket = require("socket.io-client");
+const io = require("socket.io-client");
 
-const URL = "199.247.24.20:3000";
 const PASSWORD = "DEFAULT_PASSWORD";
 
 function setupCO2Monitor() {
@@ -17,7 +16,6 @@ function setupCO2Monitor() {
 }
 
 function addDataListener(type, co2Monitor) {
-    console.log("addDataListener", Date.now());
     co2Monitor.on(type, value => {
         value = parseFloat(value);
         if (true || lastData[type] !== value) {
@@ -27,14 +25,17 @@ function addDataListener(type, co2Monitor) {
                 time: Date.now(),
                 [type]: value
             };
-            io.emit("data", newData);
+            console.log("Read CO2", newData.co2);
+            socket.emit("data", newData);
             lastData = newData;
         }
     });
 }
-const io = socket(URL);
-io.on("connect", () => {
+const socket = io("https://server.tobloef.com", { path: "/co2/socket.io" });
+socket.on("connect", () => {
     console.log("Connected to server.");
     setupCO2Monitor();
 });
+socket.on("error", console.error);
+socket.on("connect_error", console.error);
 let lastData = {};
