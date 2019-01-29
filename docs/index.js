@@ -98,7 +98,9 @@ let chart = new Chart(ctx, {
     }
 });
 
-const socket = io();
+const socket = io("https://server.tobloef.com", { path: "/co2/socket.io" });
+socket.on("error", console.error);
+socket.on("connect_error", console.error);
 socket.on("data", newData => {
     if (chart == null) {
         return;
@@ -111,6 +113,7 @@ socket.on("data", newData => {
 });
 
 function pushData(newData) {
+    console.log("Got CO2", newData.y);
     document.getElementById("co2-count").textContent = newData.y;
     chart.config.data.datasets[0].data.push(newData);
     updateDuration();
