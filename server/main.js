@@ -12,8 +12,6 @@ const io = socket(server);
 
 dataLog = [];
 
-app.use(express.static(path.join(__dirname, '/public')));
-
 io.on("connection", socket => {
     socket.emit("data", dataLog);
 
