@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const http = require("http");
@@ -7,18 +8,17 @@ const PORT = 3000;
 const PASSWORD = "DEFAULT_PASSWORD";
 
 const app = express();
-const server = http.createServer(app);
-const io = socket(server);
+server = http.createServer(app);
+const io = socket(server, { path: "/co2/socket.io" });
 
 dataLog = [];
-
-app.use(express.static(path.join(__dirname, '/public')));
 
 io.on("connection", socket => {
     socket.emit("data", dataLog);
 
     socket.on("data", (data) => {
         if (data.password === PASSWORD) {
+            console.log("Got CO2", data.co2);
             const newData = {
                 co2: {
                     y: data.co2,
@@ -38,3 +38,4 @@ io.on("connection", socket => {
 server.listen(PORT, () => {
    console.log(`CO2 Monitor server listening on port ${PORT}`);
 });
+
