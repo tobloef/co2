@@ -90,7 +90,7 @@ let chart = new Chart(ctx, {
             ]
         },
         annotation: {
-            events: ['mouseover', 'mouseout'],
+            events: ["mouseover", "mouseout"],
             annotations: [
                 {
                     drawTime: "afterDatasetsDraw",
@@ -175,12 +175,16 @@ function updateDuration() {
 }
 
 function handleLabelMouseOver(e) {
+    console.log("handleLabelMouseOver");
+    this.options.borderWidth = 3;
     this.options.enabled = true;
     this.options.chartInstance.update();
     this.chartInstance.chart.canvas.style.cursor = "pointer";
 }
 
 function handleLabelMouseOut(e) {
+    console.log("handleLabelMouseOut");
+    this.options.borderWidth = 1;
     this.options.enabled = false;
     this.options.chartInstance.update();
     this.chartInstance.chart.canvas.style.cursor = "initial";
