@@ -105,13 +105,7 @@ let chart = new Chart(ctx, {
                     scaleID: "co2",
                     value: 350,
                     borderColor: "green",
-                    borderWidth: 1,
-                    label: {
-                        enabled: true,
-                        content: "Atmospheric PPM"
-                    },
-                    onMouseOver: handleLabelMouseOver,
-                    onMouseOver: handleLabelMouseOut,
+                    borderWidth: 1
                 },
                 {
                     drawTime: "afterDatasetsDraw",
@@ -120,13 +114,7 @@ let chart = new Chart(ctx, {
                     scaleID: "co2",
                     value: 800,
                     borderColor: "orange",
-                    borderWidth: 1,
-                    label: {
-                        enabled: true,
-                        content: "Max recommended PPM"
-                    },
-                    onMouseOver: handleLabelMouseOver,
-                    onMouseOver: handleLabelMouseOut,
+                    borderWidth: 1
                 },
                 {
                     drawTime: "afterDatasetsDraw",
@@ -135,13 +123,7 @@ let chart = new Chart(ctx, {
                     scaleID: "co2",
                     value: 1200,
                     borderColor: "red",
-                    borderWidth: 1,
-                    label: {
-                        enabled: true,
-                        content: "High PPM!"
-                    },
-                    onMouseOver: handleLabelMouseOver,
-                    onMouseOver: handleLabelMouseOut,
+                    borderWidth: 1
                 },
             ]
         }
@@ -163,7 +145,7 @@ socket.on("data", newData => {
 });
 
 function pushData(newData) {
-    console.log("Got CO2", newData.y);
+    console.log("Got data", newData);
     document.getElementById("current-co2").textContent = newData.co2.y;
     document.getElementById("current-temp").textContent = newData.temp.y;
     chart.config.data.datasets[0].data.push(newData.co2);
@@ -180,24 +162,4 @@ function updateDuration() {
         duration = parseInt(value);
     }
     chart.config.options.scales.xAxes[0].realtime.duration = duration;
-}
-
-function handleLabelMouseOver(e) {
-    console.log("handleLabelMouseOver");
-    const element = this;
-    element.options.borderWidth = 3;
-    element.options.enabled = true;
-    element.options.chartInstance.update();
-    element.chartInstance.chart.canvas.style.cursor = "pointer";
-}
-
-function handleLabelMouseOut(e) {
-    console.log("handleLabelMouseOut");
-    const element = this;
-    setTimeout(() => {
-        element.options.enabled = false;
-        element.options.chartInstance.update();
-    }, 500);
-    element.options.borderWidth = 1;
-    element.chartInstance.chart.canvas.style.cursor = "initial";
 }
