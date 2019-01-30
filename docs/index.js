@@ -44,9 +44,15 @@ let chart = new Chart(ctx, {
                             return;
                         }
                         latestData = {
-                            ...latestData,
-                            x: Date.now()
-                        };
+                            co2: {
+                                ...latestData.co2,
+                                x: Date.now()
+                            },
+                            temp: {
+                                ...latestData.temp,
+                                x: Date.now()
+                            }
+                        ;
                         pushData(latestData);
                     },
                 },
@@ -151,15 +157,17 @@ socket.on("data", newData => {
     }
     for (let data of newData) {
         latestData = data.co2;
-        pushData(data.co2);
+        pushData(data);
     }
     chart.update();
 });
 
 function pushData(newData) {
     console.log("Got CO2", newData.y);
-    document.getElementById("co2-count").textContent = newData.y;
-    chart.config.data.datasets[0].data.push(newData);
+    document.getElementById("current-co2").textContent = newData.co2.y;
+    document.getElementById("current-temp").textContent = newData.temp.y;
+    chart.config.data.datasets[0].data.push(newData.co2);
+    chart.config.data.datasets[1].data.push(newData.temp);
     updateDuration();
 }
 
