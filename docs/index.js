@@ -107,8 +107,8 @@ let chart = new Chart(ctx, {
                     borderColor: "green",
                     borderWidth: 1,
                     label: {
-                        enabled: false,
-                        content: "Atmospheric average PPM"
+                        enabled: true,
+                        content: "Atmospheric PPM"
                     },
                     onMouseOver: handleLabelMouseOver,
                     onMouseOver: handleLabelMouseOut,
@@ -122,7 +122,7 @@ let chart = new Chart(ctx, {
                     borderColor: "orange",
                     borderWidth: 1,
                     label: {
-                        enabled: false,
+                        enabled: true,
                         content: "Max recommended PPM"
                     },
                     onMouseOver: handleLabelMouseOver,
@@ -137,7 +137,7 @@ let chart = new Chart(ctx, {
                     borderColor: "red",
                     borderWidth: 1,
                     label: {
-                        enabled: false,
+                        enabled: true,
                         content: "High PPM!"
                     },
                     onMouseOver: handleLabelMouseOver,
