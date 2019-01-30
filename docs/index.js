@@ -21,7 +21,7 @@ let chart = new Chart(ctx, {
                 label: "Temperature °C",
                 yAxisID: "temp",
                 borderColor: "orange",
-                fill: true,
+                fill: false,
                 lineTension: 0,
                 pointRadius: 0,
                 data: []
