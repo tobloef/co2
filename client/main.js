@@ -1,7 +1,7 @@
 const Co2Monitor = require("./co2-monitor");
 const io = require("socket.io-client");
 
-const PASSWORD = "DEFAULT_PASSWORD";
+const PASSWORD = "apiosdjf/&/&(GhJiuhs786";
 
 function setupCO2Monitor() {
     let co2Monitor = new Co2Monitor();
@@ -31,6 +31,9 @@ function addDataListener(type, co2Monitor) {
         }
     });
 }
+
+
+
 const socket = io("https://server.tobloef.com", { path: "/co2/socket.io" });
 socket.on("connect", () => {
     console.log("Connected to server.");
@@ -38,4 +41,6 @@ socket.on("connect", () => {
 });
 socket.on("error", console.error);
 socket.on("connect_error", console.error);
-let lastData = {};
+let lastData = {
+    location: process.argv.slice(2).join(" ")
+};

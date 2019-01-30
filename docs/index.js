@@ -44,6 +44,7 @@ let chart = new Chart(ctx, {
                             return;
                         }
                         latestData = {
+                            ...latestData,
                             co2: {
                                 y: latestData.co2.y,
                                 x: Date.now()
@@ -146,6 +147,7 @@ socket.on("data", newData => {
 
 function pushData(newData) {
     console.log("Got data", newData);
+    document.getElementById("current-location").textContent = newData.location;
     document.getElementById("current-co2").textContent = `${newData.co2.y} PPM`;
     document.getElementById("current-temp").textContent = `${newData.temp.y} °C`;
     chart.config.data.datasets[0].data.push(newData.co2);
