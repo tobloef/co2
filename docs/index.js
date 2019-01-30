@@ -1,7 +1,7 @@
 const delay = 1000;
 
 let latestData;
-let duration = 1000 * 60;
+let duration = 1000 * 60 * 60;
 
 const ctx = document.getElementById("chart").getContext("2d");
 let chart = new Chart(ctx, {
