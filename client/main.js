@@ -2,6 +2,7 @@ const Co2Monitor = require("./co2-monitor");
 const io = require("socket.io-client");
 
 const PASSWORD = "DEFAULT_PASSWORD";
+const location = process.argv.slice(2).join(" ");
 
 function setupCO2Monitor() {
     let co2Monitor = new Co2Monitor();
@@ -23,7 +24,8 @@ function addDataListener(type, co2Monitor) {
                 ...lastData,
                 password: PASSWORD,
                 time: Date.now(),
-                [type]: value
+                [type]: value,
+                location
             };
             console.log("Read CO2", newData.co2);
             socket.emit("data", newData);
@@ -41,6 +43,4 @@ socket.on("connect", () => {
 });
 socket.on("error", console.error);
 socket.on("connect_error", console.error);
-let lastData = {
-    location: process.argv.slice(2).join(" ")
-};
+let lastData = {};
