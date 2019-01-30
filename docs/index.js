@@ -1,7 +1,7 @@
 const delay = 1000;
 
 let latestData;
-let duration = 1000 * 60;
+let duration = 1000 * 60 * 60;
 
 const ctx = document.getElementById("chart").getContext("2d");
 let chart = new Chart(ctx, {
@@ -21,7 +21,7 @@ let chart = new Chart(ctx, {
                 label: "Temperature °C",
                 yAxisID: "temp",
                 borderColor: "orange",
-                fill: true,
+                fill: false,
                 lineTension: 0,
                 pointRadius: 0,
                 data: []
