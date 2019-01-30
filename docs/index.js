@@ -45,11 +45,11 @@ let chart = new Chart(ctx, {
                         }
                         latestData = {
                             co2: {
-                                ...latestData.co2,
+                                y: latestData.co2.y,
                                 x: Date.now()
                             },
                             temp: {
-                                ...latestData.temp,
+                                y: latestData.temp.y,
                                 x: Date.now()
                             }
                         };
@@ -138,7 +138,7 @@ socket.on("data", newData => {
         return;
     }
     for (let data of newData) {
-        latestData = data.co2;
+        latestData = data;
         pushData(data);
     }
     chart.update();
