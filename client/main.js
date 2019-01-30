@@ -1,7 +1,7 @@
 const Co2Monitor = require("./co2-monitor");
 const io = require("socket.io-client");
 
-const PASSWORD = "apiosdjf/&/&(GhJiuhs786";
+const PASSWORD = "DEFAULT_PASSWORD";
 
 function setupCO2Monitor() {
     let co2Monitor = new Co2Monitor();

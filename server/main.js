@@ -20,6 +20,7 @@ io.on("connection", socket => {
         if (data.password === PASSWORD) {
             console.log("Got CO2", data.co2);
             const newData = {
+                location: data.location,
                 co2: {
                     y: data.co2,
                     x: data.time
