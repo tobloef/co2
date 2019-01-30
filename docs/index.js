@@ -52,7 +52,7 @@ let chart = new Chart(ctx, {
                                 ...latestData.temp,
                                 x: Date.now()
                             }
-                        ;
+                        };
                         pushData(latestData);
                     },
                 },
@@ -184,16 +184,20 @@ function updateDuration() {
 
 function handleLabelMouseOver(e) {
     console.log("handleLabelMouseOver");
-    this.options.borderWidth = 3;
-    this.options.enabled = true;
-    this.options.chartInstance.update();
-    this.chartInstance.chart.canvas.style.cursor = "pointer";
+    const element = this;
+    element.options.borderWidth = 3;
+    element.options.enabled = true;
+    element.options.chartInstance.update();
+    element.chartInstance.chart.canvas.style.cursor = "pointer";
 }
 
 function handleLabelMouseOut(e) {
     console.log("handleLabelMouseOut");
-    this.options.borderWidth = 1;
-    this.options.enabled = false;
-    this.options.chartInstance.update();
-    this.chartInstance.chart.canvas.style.cursor = "initial";
+    const element = this;
+    setTimeout(() => {
+        element.options.enabled = false;
+        element.options.chartInstance.update();
+    }, 500);
+    element.options.borderWidth = 1;
+    element.chartInstance.chart.canvas.style.cursor = "initial";
 }
