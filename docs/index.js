@@ -44,7 +44,7 @@ let chart = new Chart(ctx, {
                             return;
                         }
                         latestData = {
-                            ...latestData,
+                            location: latestData.location,
                             co2: {
                                 y: latestData.co2.y,
                                 x: Date.now()
