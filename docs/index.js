@@ -146,8 +146,8 @@ socket.on("data", newData => {
 
 function pushData(newData) {
     console.log("Got data", newData);
-    document.getElementById("current-co2").textContent = newData.co2.y;
-    document.getElementById("current-temp").textContent = newData.temp.y;
+    document.getElementById("current-co2").textContent = `${newData.co2.y} PPM`;
+    document.getElementById("current-temp").textContent = `${newData.temp.y} °C`;
     chart.config.data.datasets[0].data.push(newData.co2);
     chart.config.data.datasets[1].data.push(newData.temp);
     updateDuration();
