@@ -29,6 +29,8 @@ let chart = new Chart(ctx, {
         ]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         tooltips: {
             enabled: false,
         },

@@ -5,29 +5,67 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>CO2 Monitor</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/epoch/0.8.4/css/epoch.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .chart-container {
+            height: 100%;
+        }
+
+        @media(max-width: 650px) {
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
-<body style="font-family: sans-serif">
-	<h1 align="center">
-		Location: <span id="current-location">No connection</span>
-	</h1>
-	<h1 style="font-family: sans-serif" align="center">
-		CO<sub>2</sub>: <span id="current-co2">No connection</span> - Temperature: <span id="current-temp">No connection</span>
-	</h1>
-	<canvas id="chart"></canvas>
-	<div>
-		<label for="duration">Duration to show:</label>
-		<select id="duration">
-			<option value="60000">1 minute</option>
-			<option value="600000">10 minutes</option>
-			<option value="3600000" selected="selected">1 hour</option>
-			<option value="14400000">4 hours</option>
-			<option value="43200000">12 hours</option>
-			<option value="86400000">1 day</option>
-			<option value="all">All</option>
-		</select>
-	</div>
-	<br/>
-	<a href="https://github.com/tobloef/co2">View on GitHub</a>
+<body>
+	<header>
+        <h1>
+    		Location: <span id="current-location">No connection</span>
+    	</h1>
+    	<h1>
+    		CO<sub>2</sub>: <span id="current-co2">No connection</span> - Temperature: <span id="current-temp">No connection</span>
+    	</h1>
+    </header>
+	<div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+	<footer>
+        <div>
+    		<label for="duration">Duration to show:</label>
+    		<select id="duration">
+    			<option value="60000">1 minute</option>
+    			<option value="600000">10 minutes</option>
+    			<option value="3600000" selected="selected">1 hour</option>
+    			<option value="14400000">4 hours</option>
+    			<option value="43200000">12 hours</option>
+    			<option value="86400000">1 day</option>
+    			<option value="all">All</option>
+    		</select>
+    	</div>
+    	<br/>
+    	<a href="https://github.com/tobloef/co2">View on GitHub</a>
+    </footer>
 
 	<script src="vendor/moment.min.js"></script>
 	<script src="vendor/Chart.min.js"></script>
